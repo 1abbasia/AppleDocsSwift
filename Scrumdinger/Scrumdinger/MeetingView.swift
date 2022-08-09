@@ -36,7 +36,7 @@ struct MeetingView: View {
                     Image(systemName: "forward.fill")
                 }
                 .accessibilityLabel("Next Speaker")
-            } 
+            }
         }
         .padding()
     }
@@ -47,3 +47,4 @@ struct MeetingView_Previews: PreviewProvider {
         MeetingView()
     }
 }
+
