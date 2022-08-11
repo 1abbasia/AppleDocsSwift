@@ -5,7 +5,7 @@
 //  Created by Ahsan on 8/9/22.
 //
 
-import Foundation
+
 import SwiftUI
 
 struct DetailEditView: View {
@@ -14,11 +14,11 @@ struct DetailEditView: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Meeting Info")){
+            Section(header: Text("Meeting Info")) {
                 TextField("Title", text: $data.title)
                 HStack {
-                    Slider(value: $data.lengthInMinutes, in: 5...30, step: 1  ){
-                        Text("Length in minutes")
+                    Slider(value: $data.lengthInMinutes, in: 5...30, step: 1) {
+                        Text("Length")
                     }
                     .accessibilityValue("\(Int(data.lengthInMinutes)) minutes")
                     Spacer()
@@ -26,18 +26,17 @@ struct DetailEditView: View {
                         .accessibilityHidden(true)
                 }
                 ThemePicker(selection: $data.theme)
-                
             }
-            Section(header: Text("Attendees")){
-                ForEach(data.attendees){ attendee in
+            Section(header: Text("Attendees")) {
+                ForEach(data.attendees) { attendee in
                     Text(attendee.name)
                 }
-                .onDelete{ indices in
+                .onDelete { indices in
                     data.attendees.remove(atOffsets: indices)
                 }
                 HStack {
                     TextField("New Attendee", text: $newAttendeeName)
-                    Button (action: {
+                    Button(action: {
                         withAnimation {
                             let attendee = DailyScrum.Attendee(name: newAttendeeName)
                             data.attendees.append(attendee)
@@ -46,7 +45,6 @@ struct DetailEditView: View {
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .accessibilityLabel("Add attendee")
-
                     }
                     .disabled(newAttendeeName.isEmpty)
                 }
@@ -56,7 +54,7 @@ struct DetailEditView: View {
 }
 
 struct DetailEditView_Previews: PreviewProvider {
-    static var previews: some View{
+    static var previews: some View {
         DetailEditView(data: .constant(DailyScrum.sampleData[0].data))
     }
 }

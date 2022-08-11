@@ -5,7 +5,7 @@
 //  Created by Ahsan on 8/6/22.
 //
 
-import Foundation
+
 import SwiftUI
 
 struct DetailView: View {
